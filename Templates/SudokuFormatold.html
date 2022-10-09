@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sudoku Solver</title>
+    <style>
+<!--    remove up and down arrows from input field-->
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+        }
+<!--        Centralize input in input box-->
+        #instant-quote-form {
+       display: flex;
+        }
+        #instant-quote-form > form {
+        margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+<h1> SUDOKU SOLVER</h1>
+<div>
+    <form action = '/solved' method = 'get' onkeydown="return event.key != 'Enter';"> <!--enter won't submit form-->
+        <table class="center" bgcolor="#a9a9a9" border="5" bordercolor="#474742">
+            <tr>
+                <td>
+                <table bgcolor="#474742">
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" name="a[0][0]"  style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[0][1]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[0][2]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" name="a[1][0]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[1][1]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[1][2]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" name="a[2][0]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[2][1]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[2][2]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                </table>
+                </td>
+                <td>
+                <table>
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" name="a[0][3]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[0][4]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[0][5]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" name="a[1][3]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[1][4]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[1][5]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" name="a[2][3]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[2][4]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[2][5]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                </table>
+            </td><td>
+                <table bgcolor="#474742">
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" name="a[0][6]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[0][7]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[0][8]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" name="a[1][6]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[1][7]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[1][8]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" name="a[2][6]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[2][7]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[2][8]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            </tr>
+            <tr>
+                <td>
+                <table>
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" name="a[3][0]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[3][1]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[3][2]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" name="a[4][0]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[4][1]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[4][2]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" name="a[5][0]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[5][1]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[5][2]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                </table>
+                </td>
+                <td>
+                <table bgcolor="#474742">
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" name="a[3][3]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[3][4]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[3][5]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" name="a[4][3]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[4][4]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[4][5]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" name="a[5][3]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[5][4]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[5][5]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                </table>
+            </td><td>
+                <table>
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" name="a[3][6]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[3][7]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[3][8]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" name="a[4][6]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[4][7]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[4][8]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" name="a[5][6]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[5][7]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[5][8]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            </tr>
+            <tr>
+                <td>
+                <table bgcolor="#474742">
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" name="a[6][0]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[6][1]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[6][2]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" name="a[7][0]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[7][1]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[7][2]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" name="a[8][0]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[8][1]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[8][2]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                </table>
+                </td>
+                <td>
+                <table>
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" name="a[6][3]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[6][4]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[6][5]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" name="a[7][3]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[7][4]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[7][5]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" name="a[8][3]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[8][4]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[8][5]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                </table>
+            </td><td>
+                <table bgcolor="#474742">
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" area name="a[6][6]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[6][7]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[6][8]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" name="a[7][6]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[7][7]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[7][8]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" name="a[8][6]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[8][7]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" name="a[8][8]" style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            </tr>
+        </table>
+        <button type="submit">Get Answers</button>
+    </form>
+</div>
+</body>
+</html>

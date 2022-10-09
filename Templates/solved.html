@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+      <style>
+          input::-webkit-outer-spin-button,
+          input::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+          }
+        .caret-hidden {
+         caret-color: transparent;
+        }
+      </style>
+  </head>
+<body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container position-static">
+    <a class="navbar-brand">Sudoku Solver</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About US</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled">Disabled</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong>Hello!</strong> This is your solved sudoku.
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<div class=" container-fluid position-relative bg-dark">
+<div class="position-absolute top-100 start-50 translate-middle-x mt-2 ">
+    <h1 style="font-family:Serif; text-align:center;"> SUDOKU SOLVER</h1>
+    <form action = '/solved' method = 'get' onkeydown="return event.key != 'Enter';"> <!--enter won't submit form-->
+        <table class="table-dark" bgcolor="#a9a9a9" border="5" bordercolor="#474742">
+            <tr>
+                <td class="align-middle">
+                <table class="table-dark" bgcolor="#474742" border = "2">
+                    <tr>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a00}}  style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a01}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a02}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a10}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a11}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a12}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a20}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a21}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a22}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                    </tr>
+                </table>
+                </td>
+                <td class="align-middle">
+                <table class="table-primary"  bgcolor="#a9a9a9" border="">
+                    <tr>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a03}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a04}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a05}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a13}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a14}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a15}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a23}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a24}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a25}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                    </tr>
+                </table>
+            </td><td class="align-middle">
+                <table class="table-dark" bgcolor="#474742" border = "2">
+                    <tr>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a06}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a07}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a08}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a16}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a17}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a18}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a26}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a27}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a28}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            </tr>
+            <tr>
+                <td class="align-middle">
+                <table class="table-primary"  bgcolor="#a9a9a9" border="">
+                    <tr>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a30}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a31}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a32}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a40}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a41}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a42}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a50}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a51}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a52}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                    </tr>
+                </table>
+                </td>
+                <td class="align-middle">
+                <table class="table-dark" bgcolor="#474742" border = "2">
+                    <tr>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a33}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a34}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a35}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a43}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a44}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a45}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a53}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a54}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a55}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                    </tr>
+                </table>
+            </td><td class="align-middle">
+                <table class="table-primary"  bgcolor="#a9a9a9" border="">
+                    <tr>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a36}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a37}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a38}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a46}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a47}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>   
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a48}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a56}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a57}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a58}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            </tr>
+            <tr>
+                <td class="align-middle">
+                <table class="table-dark" bgcolor="#474742" border = "2">
+                    <tr>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a60}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a61}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a62}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a70}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a71}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a72}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a80}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a81}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a82}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                    </tr>
+                </table>
+                </td>
+                <td class="align-middle">
+                <table class="table-primary"  bgcolor="#a9a9a9" border="">
+                    <tr>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a63}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a64}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a65}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a73}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a74}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a75}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a83}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a84}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a85}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                    </tr>
+                </table>
+            </td><td class="align-middle">
+                <table class="table-dark" bgcolor="#474742" border = "2">
+                    <tr>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" area value={{a66}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a67}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a68}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a76}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a77}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a78}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a86}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a87}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" min="1" max="9" value={{a88}} style="height: 28px; width: 35px; font-family: Sans Serif; font-size: 20px; text-align:center;" readonly/>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            </tr>
+        </table>
+        <div class="position-absolute top-100 start-50 translate-middle-x">
+            <button type="button" class="btn btn-dark mt-2" > Go Back </button>
+        </div>
+    </form>
+</body>
+</html>

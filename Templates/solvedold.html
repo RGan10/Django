@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Solved Sudoku</title>
+    <style>
+        <!--        Centralize input in input box-->
+        #instant-quote-form {
+       display: flex;
+        }
+        #instant-quote-form > form {
+        margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+<h1> SUDOKU SOLVER</h1>
+<form> <!--enter won't submit form-->
+        <table class="center" bgcolor="#a9a9a9" border="5" bordercolor="#474742" >
+            <tr>
+                <td>
+                <table bgcolor="#474742">
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" value={{a00}}  style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a01}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a02}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" value={{a10}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a11}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a12}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" value={{a20}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a21}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a22}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                </table>
+                </td>
+                <td>
+                <table>
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" value={{a03}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a04}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a05}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" value={{a13}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a14}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a15}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" value={{a23}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a24}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a25}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                </table>
+            </td><td>
+                <table bgcolor="#474742">
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" value={{a06}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a07}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a08}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" value={{a16}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a17}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a18}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" value={{a26}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a27}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a28}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            </tr>
+            <tr>
+                <td>
+                <table>
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" value={{a30}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a31}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a32}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" value={{a40}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a41}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a42}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" value={{a50}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a51}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a52}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                </table>
+                </td>
+                <td>
+                <table bgcolor="#474742">
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" value={{a33}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a34}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a35}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" value={{a43}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a44}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a45}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" value={{a53}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a54}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a55}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                </table>
+            </td><td>
+                <table>
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" value={{a36}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a37}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a38}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" value={{a46}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a47}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a48}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" value={{a56}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a57}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a58}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            </tr>
+            <tr>
+                <td>
+                <table bgcolor="#474742">
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" value={{a60}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a61}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a62}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" value={{a70}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a71}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a72}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" value={{a80}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a81}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a82}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                </table>
+                </td>
+                <td>
+                <table>
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" value={{a63}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a64}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a65}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" value={{a73}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a74}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a75}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" value={{a83}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a84}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a85}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                </table>
+            </td><td>
+                <table bgcolor="#474742">
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" area value={{a66}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a67}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a68}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" value={{a76}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a77}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a78}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="number min="1" max="9" value={{a86}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a87}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                        <td>
+                            <input type="number min="1" max="9" value={{a88}} style="height: 24px; width: 28px; text-align:center;"/>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            </tr>
+        </table>
+        <button type="button"><a href="../Templates/SudokuFormat.html">Go back</a> </button>
+    </form>
+</body>
+</html>
